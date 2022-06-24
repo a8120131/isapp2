@@ -1,46 +1,37 @@
 <!DOCTYPE html>
-
 <html>
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
     <script type="text/javascript" src="lib/jquery.min.js"></script>
     <script type="text/javascript" src="lib/osql.js"></script>
-
     <script>
-        osql.requireLogin();
-
+        osql.requireLogin();//すべてのページに入れる．google認証をして，osql.connect()や，osql.getMe()を使えるようにしてくれる．
         async function buttonPressed() {
-            var userid = document.getElementById('tf1').value;
-            var password = document.getElementById('tf2').value;
-
-            var sql = `select * from Users where id="${userid}";`;
+            var me = await osql.getMe();
+            console.log(me);
+            //自分のデータベースを作り
+            //create table Users(id varchar(128) primary key, fname varchar(128), lname varchar(128));
+            //を発行しておくこと
+            var sql = `insert ignore into Users values('${me.id}', '${me.fname}', '${me.lname}')`;
             var objects = await osql.connect(sql);
-            if (objects.length <= 0) {
-                document.getElementById('result').innerHTML = 'ログイン失敗：ユーザが見つかりません';
-                return;
-            }
-            if (objects[0].password != password) {
-                document.getElementById('result').innerHTML = 'ログイン失敗：パスワードが違います';
-                return;
-            }
-
-            sessionStorage.setItem('userid', objects[0].id);
-            sessionStorage.setItem('username', objects[0].name);
-
+            sessionStorage.setItem('userid', me.id);
+            sessionStorage.setItem('username', me.lname + ' ' + me.fname);
             location.href = 'usertop.html';
         }
     </script>
-
 </head>
 
 <body>
     <h1>ユーザ管理　アプリケーション　v3</h1>
     <div>
+<<<<<<< HEAD
         <h2>ログイン</h2>
         <button onclick="buttonPressed()">ログイン</button>
         <p id="result"></p>
+=======
+        <button onclick="buttonPressed()">ログイン(gsuite認証)</button>
+>>>>>>> origin/master
     </div>
 </body>
 
