@@ -18,17 +18,24 @@
         async function tableMake() {
             var html = "";
             html = html + '<table border="1">';
-            for (var i = 0; i < 7; i++) {
+            for (var i = 0; i < 8; i++) {   //表作成
                 html = html + "<tr>";
                 if (i == 0) {
-                    html = html + "<th>　</th><th> 月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th>";
+                    html = html + "<th>　</th><th> 月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th>";   //曜日部分作成
                 } else if (i == 6) {
-                    html = html + '<th>オンデマンド</th>'
+                    html = html + '<th>オンデマンド</th>';
                     for (var v = 0; v < 6; v++) {
                         html = html + '<th>　</th>';
                     }
+                } else if (i == 7) {   //コース選択部分
+                    html = html + '<th>コース選択</th>';
+                    html = html + '<th><label><input type="checkbox">全選択</label></th>';
+                    html = html + '<th><label><input type="checkbox">人間情報</label></th>';
+                    html = html + '<th><label><input type="checkbox">情報社会</label></th>';
+                    html = html + '<th><label><input type="checkbox">社会人間</label></th>';
+                    html = html + '<th><label><input type="checkbox">青スタ</label></th>';
                 } else {
-                    html = html + '<th>' + i + '</th>'
+                    html = html + '<th>' + i + '</th>';
                     for (var v = 0; v < 6; v++) {
                         html = html + '<th>　</th>';
                     }
