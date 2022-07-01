@@ -20,8 +20,8 @@
             html = html + '<table border="1">';
             for (var i = 0; i < 8; i++) {   //表作成
                 html = html + "<tr>";
-                if (i == 0) {
-                    html = html + "<th>　</th><th> 月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th>";   //曜日部分作成
+                if (i == 0) {   //曜日部分作成
+                    html = html + "<th>　</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th>";
                 } else if (i == 6) {
                     html = html + '<th>オンデマンド</th>';
                     for (var v = 0; v < 6; v++) {
@@ -37,7 +37,13 @@
                 } else {
                     html = html + '<th>' + i + '</th>';
                     for (var v = 0; v < 6; v++) {
-                        html = html + '<th>　</th>';
+                        if (i == 2) {
+                            if (v == 1) {   //火2
+                                html = html + '<th>' + classSelect() + '</th>';
+                            } else {
+                                html = html + '<th>　</th>';
+                            }
+                        }
                     }
                 }
                 html = html + '</tr>';
@@ -45,13 +51,24 @@
             html = html + '</table>';
             document.getElementById('table').innerHTML = html;
         }
+
+
+        async function classSelect() {   //SQLからデータ持ってくる
+            var sql = 'select * from Class where time = "火2"';
+            var objects = await osql.connect(sql);
+            console.log(objects);
+            html = "";
+            html = '"' + sql + '"';
+            return html;
+        }
     </script>
 
 </head>
 
 <body>
-    <h1>ユーザトップ</h1>
+    <h1>履修登録サポートシステム</h1>
     <p id="welcome">ようこそxxさん</p>
+    <p>※3年生後期限定仕様</p>
     <hr>
     <p id="table">xxxx</p>
 </body>
