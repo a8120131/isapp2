@@ -39,7 +39,10 @@
                     for (var v = 0; v < 6; v++) {
                         if (i == 2) {
                             if (v == 1) {   //火2
-                                html = html + '<th>' + classSelect() + '</th>';
+                                var sql = 'select * from Class where time = "火2"';
+                                var objects = await osql.connect(sql);
+                                var list = objects[0];
+                                html = html + '<th>' + JSON.stringify(list.name) + '</th>';
                             } else {
                                 html = html + '<th>　</th>';
                             }
@@ -50,16 +53,6 @@
             }
             html = html + '</table>';
             document.getElementById('table').innerHTML = html;
-        }
-
-
-        async function classSelect() {   //SQLからデータ持ってくる
-            var sql = 'select * from Class where time = "火2"';
-            var objects = await osql.connect(sql);
-            console.log(objects);
-            html = "";
-            html = '"' + sql + '"';
-            return html;
         }
     </script>
 
