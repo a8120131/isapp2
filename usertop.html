@@ -37,14 +37,27 @@
                 } else {
                     html = html + '<th>' + i + '</th>';
                     for (var v = 0; v < 6; v++) {
-                        if (i == 2) {
-                            if (v == 1) {   //火2
+                        if (v == 1) {   //火曜日
+                            if (i == 2) {   //2限
                                 var sql = 'select * from Class where time = "火2"';
                                 var objects = await osql.connect(sql);
                                 var list = objects[0];
                                 html = html + '<th>' + JSON.stringify(list.name).link(list.url) + '</th>';
                             } else {
                                 html = html + '<th>　</th>';
+                            }
+                        } else if (v == 2) {   //水曜日
+                            if (i == 5) {   //5限
+                                var sql = 'select * from Class where time = "火５（後期）";"';
+                                var objects = await osql.connect(sql);
+                                html = html + '<th>';
+                                for (var t = 0; objects[t] != ""; t++) {
+                                    var list = objects[t];
+                                    console.log(objects);
+                                    html = html + JSON.stringify(list.name).link(list.url);
+                                    html = html + '</br>';
+                                }
+                                html = html + '</th>';
                             }
                         } else {
                             html = html + '<th>　</th>';
