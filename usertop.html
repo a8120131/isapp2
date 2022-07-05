@@ -42,7 +42,7 @@
                                 var sql = 'select * from Class where time = "火2"';
                                 var objects = await osql.connect(sql);
                                 var list = objects[0];
-                                html = html + '<th>' + JSON.stringify(list.name) + '</th>';
+                                html = html + '<th>' + JSON.stringify(list.name).link(list.url) + '</th>';
                             } else {
                                 html = html + '<th>　</th>';
                             }
