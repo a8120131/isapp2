@@ -15,6 +15,7 @@
             tableMake();
         });
 
+
         async function tableMake() {
             var html = "";
             html = html + '<table border="1">';
@@ -37,27 +38,62 @@
                 } else {
                     html = html + '<th>' + i + '</th>';
                     for (var v = 0; v < 6; v++) {
-                        if (v == 1) {   //火曜日
-                            if (i == 2) {   //2限
-                                var sql = 'select * from Class where time = "火2"';
-                                var objects = await osql.connect(sql);
-                                var list = objects[0];
-                                html = html + '<th>' + JSON.stringify(list.name).link(list.url) + '</th>';
-                            } else {
-                                html = html + '<th>　</th>';
+                        if (v == 0) {   //月曜日
+                            if (i == 1) {   //1限
+                                html = html + '<th>月１</th>';
+                            } else if (i == 2) {   //2限
+                                html = html + '<th>月２</th>';
+                            } else if (i == 3) {   //3限
+                                html = html + '<th>月３</th>';
+                            } else if (i == 4) {   //4限
+                                html = html + '<th>月４</th>';
+                            } else if (i == 5) {   //5限
+                                html = html + '<th>月５</th>';
+                            }
+                        } else if (v == 1) {   //火曜日
+                            if (i == 1) {   //1限
+                                html = html + '<th>火１</th>';
+                            } else if (i == 2) {   //2限
+                                html = html + '<th>火２</th>';
+                            } else if (i == 3) {   //3限
+                                html = html + '<th>火３</th>';
+                            } else if (i == 4) {   //4限
+                                html = html + '<th>火４</th>';
+                            } else if (i == 5) {   //5限
+                                html = html + '<th>火５</th>';
                             }
                         } else if (v == 2) {   //水曜日
-                            if (i == 5) {   //5限
+                            if (i == 1) {   //1限
+                                html = html + '<th>水１</th>';
+                            } else if (i == 2) {   //2限
+                                html = html + '<th>水２</th>';
+                            } else if (i == 3) {   //3限
+                                html = html + '<th>水３</th>';
+                            } else if (i == 4) {   //4限
+                                html = html + '<th>水４</th>';
+                            } else if (i == 5) {   //5限
                                 var sql = 'select * from Class where time = "火５（後期）";"';
                                 var objects = await osql.connect(sql);
                                 html = html + '<th>';
-                                for (var t = 0; objects[t] != ""; t++) {
+                                for (var t = 0; t < objects.length; t++) {
                                     var list = objects[t];
-                                    console.log(objects);
+                                    console.log(objects[t]);
                                     html = html + JSON.stringify(list.name).link(list.url);
                                     html = html + '</br>';
                                 }
                                 html = html + '</th>';
+                            }
+                        } else if (v == 3) {   //木曜日
+                            if (i == 1) {   //1限
+                                html = html + '<th>木１</th>';
+                            } else if (i == 2) {   //2限
+                                html = html + '<th>木２</th>';
+                            } else if (i == 3) {   //3限
+                                html = html + '<th>木３</th>';
+                            } else if (i == 4) {   //4限
+                                html = html + '<th>木４</th>';
+                            } else if (i == 5) {   //5限
+                                html = html + '<th>木５</th>';
                             }
                         } else {
                             html = html + '<th>　</th>';
