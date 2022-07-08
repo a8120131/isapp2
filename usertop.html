@@ -16,6 +16,19 @@
         });
 
 
+        async function classes(sql) {
+            var objects = await osql.connect(sql);
+            html = html + '<th>';
+            for (var t = 0; t < objects.length; t++) {
+                var list = objects[t];
+                console.log(objects[t]);
+                html = html + JSON.stringify(list.name).link(list.url);
+                html = html + '</br>';
+            }
+            html = html + '</th>';
+        }
+
+
         async function tableMake() {
             var html = "";
             html = html + '<table border="1">';
