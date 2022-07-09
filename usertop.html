@@ -17,6 +17,7 @@
 
 
         var html;
+        var checkCount;
 
 
         function areaSelect() {   //特定のエリアが選択された後
@@ -27,8 +28,11 @@
 
 
         function checkBox() {   //チェックボックス管理
-            if ($("input[type=checkbox]:checked").size() == 0) {   //どのチェックボックスにもチェックがついていない
-                window.alert("A");
+            if ($("input[type=checkbox]:checked").size() == 0) {   //どのチェックボックスにもチェックがついていない場合
+                document.getElementById("all").checked = true;   //「全選択」にチェックを入れる
+            }
+            if ($("input[type=checkbox]:checked").size() <= 2) {   //2個以上チェックされている場合
+                window.alert("エリアが2つ以上選択されています");
             }
         }
 
