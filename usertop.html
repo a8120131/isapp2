@@ -34,21 +34,28 @@
         }
 
 
-        async function tableMake() {
-
+        async function areaSql() {   //エリア選択のSQL
+            area = "";
             if (all.checked) {   //全選択
-                console.log("A");
-            } else if (imfo.checked) {
-
-            } else if (society.checked) {
-
-            } else if (human.checked) {
-
-            } else if (aosuta.checked) {
-
+                area = "";
             }
+            if (imfo.checked) {
+                area = area + 'AND area = "情報"';
+            }
+            if (society.checked) {
+                area = area + 'AND area = "社会"';
+            }
+            if (human.checked) {
+                area = area + 'AND area = "人間"';
+            }
+            if (aosuta.checked) {
+                area = area + 'AND area = "青スタ"';
+            }
+            return area;
+        }
 
 
+        async function tableMake() {
             var html = "";
             html = html + '<table border="1">';
             for (var i = 0; i < 7; i++) {   //表作成
@@ -64,104 +71,104 @@
                     for (var v = 0; v < 6; v++) {
                         if (v == 0) {   //月曜日
                             if (i == 1) {   //1限
-                                var sql = 'select * from Class where time = "月１（後期）";"';
+                                var sql = 'select * from Class where time = "月１（後期）"' + await areaSql() + ';';
                                 html = html + await classSelect(sql);
                             } else if (i == 2) {   //2限
-                                var sql = 'select * from Class where time = "月２（後期）";"';
+                                var sql = 'select * from Class where time = "月２（後期）"' + await areaSql() + ';';
                                 html = html + await classSelect(sql);
                             } else if (i == 3) {   //3限
-                                var sql = 'select * from Class where time = "月３（後期）";"';
+                                var sql = 'select * from Class where time = "月３（後期）"' + await areaSql() + ';';
                                 html = html + await classSelect(sql);
                             } else if (i == 4) {   //4限
-                                var sql = 'select * from Class where time = "月４（後期）";"';
+                                var sql = 'select * from Class where time = "月４（後期）"' + await areaSql() + ';';
                                 html = html + await classSelect(sql);
                             } else if (i == 5) {   //5限
-                                var sql = 'select * from Class where time = "月５（後期）";"';
+                                var sql = 'select * from Class where time = "月５（後期）"' + await areaSql() + ';';
                                 html = html + await classSelect(sql);
                             }
                         } else if (v == 1) {   //火曜日
                             if (i == 1) {   //1限
-                                var sql = 'select * from Class where time = "火１（後期）";"';
+                                var sql = 'select * from Class where time = "火１（後期）"' + await areaSql() + ';';
                                 html = html + await classSelect(sql);
                             } else if (i == 2) {   //2限
-                                var sql = 'select * from Class where time = "火２（後期）";"';
+                                var sql = 'select * from Class where time = "火２（後期）"' + await areaSql() + ';';
                                 html = html + await classSelect(sql);
                             } else if (i == 3) {   //3限
-                                var sql = 'select * from Class where time = "火３（後期）";"';
+                                var sql = 'select * from Class where time = "火３（後期）"' + await areaSql() + ';';
                                 html = html + await classSelect(sql);
                             } else if (i == 4) {   //4限
-                                var sql = 'select * from Class where time = "火４（後期）";"';
+                                var sql = 'select * from Class where time = "火４（後期）"' + await areaSql() + ';';
                                 html = html + await classSelect(sql);
                             } else if (i == 5) {   //5限
-                                var sql = 'select * from Class where time = "火５（後期）";"';
+                                var sql = 'select * from Class where time = "火５（後期）"' + await areaSql() + ';';
                                 html = html + await classSelect(sql);
                             }
                         } else if (v == 2) {   //水曜日
                             if (i == 1) {   //1限
-                                var sql = 'select * from Class where time = "水１（後期）";"';
+                                var sql = 'select * from Class where time = "水１（後期）"' + await areaSql() + ';';
                                 html = html + await classSelect(sql);
                             } else if (i == 2) {   //2限
-                                var sql = 'select * from Class where time = "水２（後期）";"';
+                                var sql = 'select * from Class where time = "水２（後期）"' + await areaSql() + ';';
                                 html = html + await classSelect(sql);
                             } else if (i == 3) {   //3限
-                                var sql = 'select * from Class where time = "水３（後期）";"';
+                                var sql = 'select * from Class where time = "水３（後期）"' + await areaSql() + ';';
                                 html = html + await classSelect(sql);
                             } else if (i == 4) {   //4限
-                                var sql = 'select * from Class where time = "水４（後期）";"';
+                                var sql = 'select * from Class where time = "水４（後期）"' + await areaSql() + ';';
                                 html = html + await classSelect(sql);
                             } else if (i == 5) {   //5限
-                                var sql = 'select * from Class where time = "水５（後期）";"';
+                                var sql = 'select * from Class where time = "水５（後期）"' + await areaSql() + ';';
                                 html = html + await classSelect(sql);
                             }
                         } else if (v == 3) {   //木曜日
                             if (i == 1) {   //1限
-                                var sql = 'select * from Class where time = "木１（後期）";"';
+                                var sql = 'select * from Class where time = "木１（後期）"' + await areaSql() + ';';
                                 html = html + await classSelect(sql);
                             } else if (i == 2) {   //2限
-                                var sql = 'select * from Class where time = "木２（後期）";"';
+                                var sql = 'select * from Class where time = "木２（後期）"' + await areaSql() + ';';
                                 html = html + await classSelect(sql);
                             } else if (i == 3) {   //3限
-                                var sql = 'select * from Class where time = "木３（後期）";"';
+                                var sql = 'select * from Class where time = "木３（後期）"' + await areaSql() + ';';
                                 html = html + await classSelect(sql);
                             } else if (i == 4) {   //4限
-                                var sql = 'select * from Class where time = "木４（後期）";"';
+                                var sql = 'select * from Class where time = "木４（後期）"' + await areaSql() + ';';
                                 html = html + await classSelect(sql);
                             } else if (i == 5) {   //5限
-                                var sql = 'select * from Class where time = "木５（後期）";"';
+                                var sql = 'select * from Class where time = "木５（後期）"' + await areaSql() + ';';
                                 html = html + await classSelect(sql);
                             }
                         } else if (v == 4) {   //金曜日
                             if (i == 1) {   //1限
-                                var sql = 'select * from Class where time = "金１（後期）";"';
+                                var sql = 'select * from Class where time = "金１（後期）"' + await areaSql() + ';';
                                 html = html + await classSelect(sql);
                             } else if (i == 2) {   //2限
-                                var sql = 'select * from Class where time = "金２（後期）";"';
+                                var sql = 'select * from Class where time = "金２（後期）"' + await areaSql() + ';';
                                 html = html + await classSelect(sql);
                             } else if (i == 3) {   //3限
-                                var sql = 'select * from Class where time = "金３（後期）";"';
+                                var sql = 'select * from Class where time = "金３（後期）"' + await areaSql() + ';';
                                 html = html + await classSelect(sql);
                             } else if (i == 4) {   //4限
-                                var sql = 'select * from Class where time = "金４（後期）";"';
+                                var sql = 'select * from Class where time = "金４（後期）"' + await areaSql() + ';';
                                 html = html + await classSelect(sql);
                             } else if (i == 5) {   //5限
-                                var sql = 'select * from Class where time = "金５（後期）";"';
+                                var sql = 'select * from Class where time = "金５（後期）"' + await areaSql() + ';';
                                 html = html + await classSelect(sql);
                             }
                         } else {   //土曜日
                             if (i == 1) {   //1限
-                                var sql = 'select * from Class where time = "土１（後期）";"';
+                                var sql = 'select * from Class where time = "土１（後期）"' + await areaSql() + ';';
                                 html = html + await classSelect(sql);
                             } else if (i == 2) {   //2限
-                                var sql = 'select * from Class where time = "土２（後期）";"';
+                                var sql = 'select * from Class where time = "土２（後期）"' + await areaSql() + ';';
                                 html = html + await classSelect(sql);
                             } else if (i == 3) {   //3限
-                                var sql = 'select * from Class where time = "土３（後期）";"';
+                                var sql = 'select * from Class where time = "土３（後期）"' + await areaSql() + ';';
                                 html = html + await classSelect(sql);
                             } else if (i == 4) {   //4限
-                                var sql = 'select * from Class where time = "土４（後期）";"';
+                                var sql = 'select * from Class where time = "土４（後期）"' + await areaSql() + ';';
                                 html = html + await classSelect(sql);
                             } else if (i == 5) {   //5限
-                                var sql = 'select * from Class where time = "土５（後期）";"';
+                                var sql = 'select * from Class where time = "土５（後期）"' + await areaSql() + ';';
                                 html = html + await classSelect(sql);
                             }
                         }
