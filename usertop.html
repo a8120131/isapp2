@@ -17,10 +17,11 @@
 
 
         var html;
-        var checkCount;
+        var checkCount = [];
 
 
         function areaSelect() {   //特定のエリアが選択された後
+            areaList();
             checkBox();
             areaSql();
             tableMake();
@@ -32,7 +33,27 @@
                 document.getElementById("all").checked = true;   //「全選択」にチェックを入れる
             }
             if ($("input[type=checkbox]:checked").size() <= 2) {   //2個以上チェックされている場合
-                window.alert("エリアが2つ以上選択されています");
+                document.getElementById(checkCount[0]).checked = false;
+                checkCount = [];
+            }
+        }
+
+
+        function areaList() {    ///押されたエリアのリスト
+            if (all.checked) {   //全選択
+                checkCount.push("all");
+            }
+            if (info.checked) {   //情報
+                checkCount.push("info");
+            }
+            if (society.checked) {   //社会
+                checkCount.push("society");
+            }
+            if (human.checked) {   //人間
+                checkCount.push("human");
+            }
+            if (aosuta.checked) {   //青スタ
+                checkCount.push("aosuta");
             }
         }
 
@@ -41,18 +62,23 @@
             area = "";
             if (all.checked) {   //全選択
                 area = "";
+                checkCount.push("all");
             }
             if (info.checked) {   //情報
                 area = area + 'AND area = "情報"';
+                checkCount.push("info");
             }
             if (society.checked) {   //社会
                 area = area + 'AND area = "社会"';
+                checkCount.push("society");
             }
             if (human.checked) {   //人間
                 area = area + 'AND area = "人間"';
+                checkCount.push("human");
             }
             if (aosuta.checked) {   //青スタ
                 area = area + 'AND area = "青スタ"';
+                checkCount.push("aosuta");
             }
             return area;
         }
