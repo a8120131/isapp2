@@ -12,12 +12,20 @@
         osql.requireLogin();
 
         $(document).ready(function () {
+            welcome();
             tableMake();
         });
 
 
         var html;
         var checkCount = [];
+
+
+        async function welcome() {   //ユーザー認証
+            var me = await osql.getMe();
+            var nameSql = `insert ignore into Users values('${me.id}', '${me.fname}', '${me.lname}')`;
+            document.getElementById("welcome").innerHTML = "ようこそ" + me.fname + "さん";
+        }
 
 
         function areaSelect() {   //特定のエリアが選択された後
