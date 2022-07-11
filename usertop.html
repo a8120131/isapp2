@@ -46,6 +46,12 @@
             }
         }
 
+        function radioCheck() {   //ラジオボタンオンオフ管理
+            if ($("input[type=radio]:checked") == true) {
+                document.getElementById("sql").checked = false;
+            }
+        }
+
 
         function areaList() {    ///押されたエリアのリスト
             if (all.checked) {   //全選択
@@ -99,7 +105,7 @@
             for (var t = 0; t < objects.length; t++) {
                 var list = objects[t];
                 console.log(objects[t]);
-                html = html + '<input type="radio" name = "radio">' + JSON.stringify(list.name).link(list.url);
+                html = html + '<input type="radio" id= "' + sql + '" onclick="radioCheck()">' + JSON.stringify(list.name).link(list.url);
                 html = html + '</br>';
             }
             html = html + '</th>';
