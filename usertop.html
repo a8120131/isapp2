@@ -19,6 +19,7 @@
 
         var html;
         var checkCount = [];
+        var pickList = [];
 
 
         async function welcome() {   //ユーザー認証
@@ -37,19 +38,21 @@
 
 
         function checkBox() {   //チェックボックス管理
-            if ($("input[type=checkbox]:checked").size() == 0) {   //どのチェックボックスにもチェックがついていない場合
+            //name="area"
+            if ($('input[name = "area"]:checked').size() == 0) {   //どのチェックボックスにもチェックがついていない場合
                 document.getElementById("all").checked = true;   //「全選択」にチェックを入れる
             }
-            if ($("input[type=checkbox]:checked").size() <= 2) {   //2個以上チェックされている場合
+            if ($('input[name = "area"]:checked').size() <= 2) {   //2個以上チェックされている場合
                 document.getElementById(checkCount[0]).checked = false;
                 checkCount = [];
             }
+
+            //name="pickUpList"
         }
 
-        function radioCheck() {   //ラジオボタンオンオフ管理
-            if ($("input[type=radio]:checked") == true) {
-                document.getElementById("sql").checked = false;
-            }
+
+        function pickUpList(pickClass) {   //選択した授業の管理
+            pickList.push(pickClass);
         }
 
 
@@ -105,7 +108,7 @@
             for (var t = 0; t < objects.length; t++) {
                 var list = objects[t];
                 console.log(objects[t]);
-                html = html + '<input type="radio" id= "' + sql + '" onclick="radioCheck()">' + JSON.stringify(list.name).link(list.url);
+                html = html + '<input type="checkbox" name="pickUpList">' + JSON.stringify(list.name).link(list.url);
                 html = html + '</br>';
             }
             html = html + '</th>';
@@ -250,11 +253,11 @@
     <!--エリア選択-->
     <table border="1">
         <th>エリア選択</th>
-        <th><label><input type="checkbox" checked id="all" onclick="areaSelect()">全選択</label></th>
-        <th><label><input type="checkbox" id="info" onclick="areaSelect()">情報</label></th>
-        <th><label><input type="checkbox" id="society" onclick="areaSelect()">社会</label></th>
-        <th><label><input type="checkbox" id="human" onclick="areaSelect()">人間</label></th>
-        <th><label><input type="checkbox" id="aosuta" onclick="areaSelect()">青スタ</label></th>
+        <th><label><input type="checkbox" checked id="all" name="area" onclick="areaSelect()">全選択</label></th>
+        <th><label><input type="checkbox" id="info" name="area" onclick="areaSelect()">情報</label></th>
+        <th><label><input type="checkbox" id="society" name="area" onclick="areaSelect()">社会</label></th>
+        <th><label><input type="checkbox" id="human" name="area" onclick="areaSelect()">人間</label></th>
+        <th><label><input type="checkbox" id="aosuta" name="area" onclick="areaSelect()">青スタ</label></th>
     </table>
     <p id="table">xxxx</p>
 </body>
