@@ -42,17 +42,10 @@
             if ($('input[name = "area"]:checked').size() == 0) {   //どのチェックボックスにもチェックがついていない場合
                 document.getElementById("all").checked = true;   //「全選択」にチェックを入れる
             }
-            if ($('input[name = "area"]:checked').size() <= 2) {   //2個以上チェックされている場合
+            if ($('input[name = "area"]:checked').size() >= 2) {   //2個以上チェックされている場合
                 document.getElementById(checkCount[0]).checked = false;
                 checkCount = [];
             }
-
-            //name="pickUpList"
-        }
-
-
-        function pickUpList(pickClass) {   //選択した授業の管理
-            pickList.push(pickClass);
         }
 
 
@@ -108,7 +101,7 @@
             for (var t = 0; t < objects.length; t++) {
                 var list = objects[t];
                 console.log(objects[t]);
-                html = html + '<input type="checkbox" name="pickUpList">' + JSON.stringify(list.name).link(list.url);
+                html = html + JSON.stringify(list.name).link(list.url);
                 html = html + '</br>';
             }
             html = html + '</th>';
