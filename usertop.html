@@ -20,7 +20,6 @@
         var html;
         var checkCount = [];
         var nrc;
-        var pickUpList = [];
 
 
         async function welcome() {   //ユーザー認証
@@ -46,18 +45,6 @@
             if ($('input[name = "area"]:checked').size() >= 2) {   //2個以上チェックされている場合
                 document.getElementById(checkCount[0]).checked = false;
                 checkCount = [];
-            }
-        }
-
-
-        function radioCheck(nowCheck, checkClass) {   //ラジオボタン管理
-            if (nrc == nowCheck.value) {   //既に押されているボタンが押された場合
-                nowCheck.checked = false;
-                nrc = "";
-                pickUpList.push("checkClass");
-                console.log(pickUpList);
-            } else {
-                nrc = nowCheck.value;   //押されていないボタンが押された場合
             }
         }
 
@@ -114,7 +101,7 @@
             for (var t = 0; t < objects.length; t++) {
                 var list = objects[t];
                 var oneList = JSON.stringify(list.name).link(list.url)
-                html = html + '<input type="radio" onclick="radioCheck(this,oneList)">' + oneList;
+                html = html + oneList;
                 html = html + '</br>';
             }
             html = html + '</th>';
