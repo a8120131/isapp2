@@ -65,6 +65,18 @@
             if (aosuta.checked) {   //青スタ
                 checkCount.push("aosuta");
             }
+            if (ensyu.checked) {   //演習
+                checkCount.push("ensyu");
+            }
+            if (riezon.checked) {   //リエゾン
+                checkCount.push("riezon");
+            }
+            if (senmon.checked) {   //専門自由
+                checkCount.push("senmon");
+            }
+            if (eigo.checked) {   //英語
+                checkCount.push("eigo");
+            }
         }
 
 
@@ -89,6 +101,22 @@
             if (aosuta.checked) {   //青スタ
                 area = area + 'AND area = "青スタ"';
                 checkCount.push("aosuta");
+            }
+            if (ensyu.checked) {   //演習
+                area = area + 'AND area = "演習"';
+                checkCount.push("ensyu");
+            }
+            if (riezon.checked) {   //リエゾン
+                area = area + 'AND area = "リエゾン"';
+                checkCount.push("riezon");
+            }
+            if (senmon.checked) {   //専門自由
+                area = area + 'AND area = "専門自由"';
+                checkCount.push("senmon");
+            }
+            if (eigo.checked) {   //英語
+                area = area + 'AND area = "英語"';
+                checkCount.push("eigo");
             }
             return area;
         }
@@ -251,6 +279,10 @@
         <th><label><input type="checkbox" id="society" name="area" onclick="areaSelect()">社会</label></th>
         <th><label><input type="checkbox" id="human" name="area" onclick="areaSelect()">人間</label></th>
         <th><label><input type="checkbox" id="aosuta" name="area" onclick="areaSelect()">青スタ</label></th>
+        <th><label><input type="checkbox" id="ensyu" name="area" onclick="areaSelect()">演習</label></th>
+        <th><label><input type="checkbox" id="riezon" name="area" onclick="areaSelect()">リエゾン</label></th>
+        <th><label><input type="checkbox" id="senmon" name="area" onclick="areaSelect()">専門自由</label></th>
+        <th><label><input type="checkbox" id="eigo" name="area" onclick="areaSelect()">英語</label></th>
     </table>
     <p id="table">xxxx</p>
 </body>
